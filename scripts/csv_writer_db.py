@@ -18,13 +18,13 @@ conn = psycopg2.connect(host=DB_HOST, port=DB_PORT, database=DB_NAME, user=DB_US
 cursor = conn.cursor()
 
 # List of tables to extract data from
-tables = ['categories', 'customers', 'employee_territories', 'employees', 'orders', 'products', 'region', 'shippers', 'suppliers', 'territories', 'us_states']
+tables = ['categories', 'customer_demographics', 'customers', 'employee_territories', 'employees', 'orders', 'products', 'region', 'shippers', 'suppliers', 'territories', 'us_states']
 
 date_str = datetime.now().strftime("%Y-%m-%d")
 
 # Loop through tables and extract data to CSV
 for table in tables:
-    table_folder = f"{output_folder}/postgres/{table}/{date_str}"
+    table_folder = f"{output_folder}/csv/{table}/{date_str}"
     os.makedirs(table_folder, exist_ok=True)
 
     cursor.execute(f"SELECT * FROM {table}")
