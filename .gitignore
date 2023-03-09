@@ -1,2 +1,3 @@
 /scripts/dbdata/
-/dbdata/pg_stat/
+/dbdata/
+/.idea/

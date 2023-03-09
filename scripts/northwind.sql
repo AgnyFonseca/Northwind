@@ -34,6 +34,7 @@ DROP TABLE IF EXISTS us_states;
 DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS region;
 DROP TABLE IF EXISTS employees;
+DROP TABLE IF EXISTS order_details;
 
 --
 -- Name: categories; Type: TABLE; Schema: public; Owner: -; Tablespace:
@@ -229,6 +230,18 @@ CREATE TABLE us_states (
 );
 
 --
+-- Name: order_details; Type: TABLE; Schema: public; Owner: -; Tablespace:
+--
+
+CREATE TABLE order_details (
+    order_id smallint,
+    product_id smallint,
+    unit_price real,
+    quantity integer,
+    discount real
+);
+
+--
 -- Name: pk_categories; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
 --
 
@@ -420,6 +433,21 @@ ALTER TABLE ONLY customer_customer_demo
 ALTER TABLE ONLY employees
     ADD CONSTRAINT fk_employees_employees FOREIGN KEY (reports_to) REFERENCES employees;
 
+
+--
+-- Name: fk_order_details_orders; Type: Constraint; Schema: -; Owner: -
+--
+
+ALTER TABLE ONLY order_details
+    ADD CONSTRAINT fk_order_details_orders FOREIGN KEY (order_id) REFERENCES orders;
+
+
+--
+-- Name: fk_order_details_products; Type: Constraint; Schema: -; Owner: -
+--
+
+ALTER TABLE ONLY order_details
+    ADD CONSTRAINT fk_order_details_products FOREIGN KEY (product_id) REFERENCES products;
 
 --
 -- PostgreSQL database dump complete
